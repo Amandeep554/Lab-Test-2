@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import ProductTable from './ProductTable';
+import AddProductForm from './AddProductForm';
+import { useState } from 'react';
 
 function App() {
+  const [product, setProducts] = useState([]);
+
+  const onSubmit = (data) => {
+    setProducts([...product, data]);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddProductForm onSubmit={onSubmit} />
+      <ProductTable products={product} />
+
     </div>
   );
 }
